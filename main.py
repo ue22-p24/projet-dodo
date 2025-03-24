@@ -40,21 +40,6 @@ async def home(request: Request, filter: str = "all"):
         }
     )
 
-@app.post("/todos")
-async def create(database: DB, content: Annotated[str, Form()]):
-    await create_todo(database, content)
-    return RedirectResponse(url="/", status_code=303)
-
-@app.post("/todos/{todo_id}")
-async def update(database: DB, todo_id: int, action: Annotated[str, Form()], is_done: Annotated[bool, Form()]):
-    if action == "update":
-        await update_todo(database, todo_id, is_done)
-    elif action == "delete":
-        await delete_todo(database, todo_id)
-
-    # Redirection vers la page d'accueil
-    return RedirectResponse(url="/", status_code=303)
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host=config.bind_host, port=config.port)

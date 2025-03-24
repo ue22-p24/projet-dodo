@@ -33,7 +33,7 @@
                 <li class="todo-item {% if todo.completed %}completed{% endif %}">
                     <span class="todo-text">{{ todo.content }}</span>
                     <div class="todo-actions">
-                        <form action="/todos/{{ todo.id }}" method="POST" class="todo-form">
+                        <div>
                             <input type="hidden" name="is_done" value="{{ '0' if todo.is_done else '1' }}">
                             <button name="action" value="update" type="submit" class="status-btn {% if todo.completed %}completed{% endif %}">
                                 {% if todo.is_done %}
@@ -43,7 +43,7 @@
                                 {% endif %}
                             </button>
                             <button name="action" value="delete" type="submit" class="delete-btn">Supprimer</button>
-                        </form>
+                        </div>
                     </div>
                 </li>
             {% else %}
