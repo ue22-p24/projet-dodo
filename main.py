@@ -1,21 +1,18 @@
 from contextlib import asynccontextmanager
-from typing import Annotated, Optional
-from fastapi import FastAPI, Request, Form, Response
-from fastapi.responses import HTMLResponse, RedirectResponse
+from databases import Database
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from config import Config
-from db import DB, database
-from db.queries import create_todo, delete_todo, get_todos, update_todo
-
-# ENV-loaded settings
-config = Config()
 
 # Static files are handled by a specific sub-router 
 static = StaticFiles(directory="static")
 
 # We instanciate a template engine for jinja2
 templates = Jinja2Templates(directory="templates")
+
+# The database connection
+database = Database('sqlite+aiosqlite:///data.db')
 
 # Connect/disconnect the database when the app starts/stops
 @asynccontextmanager
@@ -31,7 +28,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request, filter: str = "all"):
-    todos = await get_todos(database, filter)
+    todos = []
     return templates.TemplateResponse(
         "index.html",
         {

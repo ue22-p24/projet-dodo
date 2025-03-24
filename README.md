@@ -12,10 +12,12 @@ Ce projet est une réimplémentation du concept de Doodle or Die, développée a
 ## Fonctionnalités
 
 - Lecture et affichage des TODOs en base
-- Effacement
 - Modification
+- Effacement
 
 ## Installation
+
+pré-requis: installer l'extension SQLite Viewer (qwtel.sqlite-viewer)
 
 1. Récupérer le code de l'exemple
    ```bash
@@ -43,15 +45,6 @@ Ce projet est une réimplémentation du concept de Doodle or Die, développée a
      uv run main.py
      ```
 
-## Lancer les tests
-
-Suivant l 'état d'avancement du cours, on rajoutera des tests dans le répertoire `/tests`
-
-Pour les exécuter:
-```bash
-uv run pytest
-```
-
 ## Technologies Utilisées
 
 - Backend : FastAPI
@@ -62,11 +55,3 @@ uv run pytest
 ## Contexte Pédagogique
 
 Ce projet est destiné aux élèves de première année de Mines ParisTech dans le cadre de leur formation en développement web. Il sert de support pédagogique pour l'apprentissage des technologies web modernes.
-
-## Contribution
-
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou proposer une pull request.
-
-## Licence
-
-MIT
